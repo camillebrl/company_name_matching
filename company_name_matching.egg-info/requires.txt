@@ -1,5 +1,2 @@
-fuzzywuzzyn
+fuzzywuzzy
 Levenshtein
-enum
-unicodedata
-unittest

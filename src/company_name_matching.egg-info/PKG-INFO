@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: company-name-matching
+Version: 0.0.1
+Summary: Give a score for 2 companies to be the same
+Home-page: https://github.com/camillebrl/company_name_matching.git
+Author: camillebrl
+Author-email: camille.barboule@gmail.com
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/camillebrl/company_name_matching.git/issues
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+UNKNOWN
+

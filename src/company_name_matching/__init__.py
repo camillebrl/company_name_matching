@@ -1,0 +1,1 @@
+from matching_algorithm.company_name_matching import DefaultMatching

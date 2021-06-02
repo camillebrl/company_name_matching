@@ -14,7 +14,7 @@ LONG_DESCRIPTION = 'A package that allows to build simple streams of video, audi
 # Setting up
 setup(
     name="company_name_matching",
-    version="0.0.1",
+    version="0.0.2",
     author="camillebrl (Camille Barboule)",
     author_email="camille.barboule@gmail.com",
     description="Returns a score of 2 companies to be the same",

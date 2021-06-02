@@ -13,16 +13,15 @@ LONG_DESCRIPTION = 'A package that allows to build simple streams of video, audi
 
 # Setting up
 setup(
-    name="vidstream",
-    version=VERSION,
-    author="NeuralNine (Florian Dedov)",
-    author_email="<mail@neuralnine.com>",
-    description=DESCRIPTION,
+    name="company_name_matching",
+    version="0.0.1",
+    author="camillebrl (Camille Barboule)",
+    author_email="camille.barboule@gmail.com",
+    description="Returns a score of 2 companies to be the same",
     long_description_content_type="text/markdown",
-    long_description=long_description,
     packages=find_packages(),
-    install_requires=['opencv-python', 'pyautogui', 'pyaudio'],
-    keywords=['python', 'video', 'stream', 'video stream', 'camera stream', 'sockets'],
+    install_requires=['fuzzywuzzyn', 'Levenshtein', 'enum', 'unicodedata', 'unittest'],
+    keywords=['python', 'companies', 'matching', 'duplicates', 'names', 'cleaning'],
     classifiers=[
         "Development Status :: 1 - Planning",
         "Intended Audience :: Developers",

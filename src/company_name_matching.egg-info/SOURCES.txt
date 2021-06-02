@@ -1,9 +1,0 @@
-LICENSE
-README.md
-pyproject.toml
-setup.cfg
-src/company_name_matching/__init__.py
-src/company_name_matching.egg-info/PKG-INFO
-src/company_name_matching.egg-info/SOURCES.txt
-src/company_name_matching.egg-info/dependency_links.txt
-src/company_name_matching.egg-info/top_level.txt

@@ -161,7 +161,7 @@ class ElfType(IntEnum):
 
 class Elf:
     def __init__(self):
-        file_path = os.path.join(os.path.dirname(__file__), 'elf_company.csv')
+        file_path = os.path.join(os.path.dirname(__file__), 'company_name_matching/elf_company.csv')
         self.__elf_database = self.__read_from_csv(file_path)
 
     def get(self, elf_type, token, country='AA'):
@@ -582,7 +582,7 @@ class MatchingParameters:
             self.meaningless_characters_without_dot = meaningless_characters
         self.transliterate = None
         self.and_words = ['and', 'und', 'et']
-        self.abbreviations = json.load(open("abbreviations.json"))
+        self.abbreviations = json.load(open("company_name_matching/abbreviations.json"))
 
     @staticmethod
     def default():

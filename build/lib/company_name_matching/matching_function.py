@@ -8,6 +8,7 @@ from fuzzywuzzy import fuzz
 import Levenshtein
 from enum import IntFlag, IntEnum
 import unicodedata, unittest
+import importlib.resources as pkg_resources
 
 
 
@@ -161,8 +162,9 @@ class ElfType(IntEnum):
 
 class Elf:
     def __init__(self):
-        file_path = os.path.join(os.path.dirname(__file__), 'company_name_matching/elf_company.csv')
-        self.__elf_database = self.__read_from_csv(file_path)
+        content = pkg_resources.open_text('company_name_matching', 'elf_company.csv')
+        #file_path = os.path.join(os.path.dirname(__file__), 'data/elf_company.csv')
+        self.__elf_database = self.__read_from_csv(content)
 
     def get(self, elf_type, token, country='AA'):
         country_mapping = self.__elf_database[country]
@@ -171,32 +173,31 @@ class Elf:
         else:
             return country_mapping[elf_type].get(token)
 
-    def __read_from_csv(self, file_path):
+    def __read_from_csv(self, content):
         elf_database = {}
-        with open(file_path, 'r', encoding='utf-8') as csvfile:
-            spamreader = csv.reader(csvfile, delimiter=',', quotechar='"', strict=True)
-            for tokens in spamreader:
+        spamreader = csv.reader(content, delimiter=',', quotechar='"', strict=True)
+        for tokens in spamreader:
 
-                country = tokens[0]
-                elf_type = ElfType(int(tokens[1]))
-                word = tokens[2]
-                elfs = set(tokens[3].split(';'))
+            country = tokens[0]
+            elf_type = ElfType(int(tokens[1]))
+            word = tokens[2]
+            elfs = set(tokens[3].split(';'))
 
-                country_mapping = elf_database.get(country, None)
-                if country_mapping is None:
-                    word_mapping = {}
+            country_mapping = elf_database.get(country, None)
+            if country_mapping is None:
+                word_mapping = {}
+                word_mapping[word] = elfs
+                country_mapping = [None for _ in range(4)]
+                country_mapping[elf_type] = word_mapping
+            else:
+                word_mapping = country_mapping[elf_type]
+                if word_mapping is not None:
                     word_mapping[word] = elfs
-                    country_mapping = [None for _ in range(4)]
-                    country_mapping[elf_type] = word_mapping
                 else:
-                    word_mapping = country_mapping[elf_type]
-                    if word_mapping is not None:
-                        word_mapping[word] = elfs
-                    else:
-                        word_mapping = { word: elfs }
-                    country_mapping[elf_type] = word_mapping
+                    word_mapping = { word: elfs }
+                country_mapping[elf_type] = word_mapping
 
-                elf_database[country] = country_mapping
+            elf_database[country] = country_mapping
         return elf_database
 
 
@@ -582,7 +583,8 @@ class MatchingParameters:
             self.meaningless_characters_without_dot = meaningless_characters
         self.transliterate = None
         self.and_words = ['and', 'und', 'et']
-        self.abbreviations = json.load(open("company_name_matching/abbreviations.json"))
+        self.abbreviations = json.load(pkg_resources.open_text('company_name_matching', 'abbreviations.json'))
+        #self.abbreviations = json.load(open('data/abbreviations.json'))
 
     @staticmethod
     def default():

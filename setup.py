@@ -7,19 +7,21 @@ here = os.path.abspath(os.path.dirname(__file__))
 with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
     long_description = "\n" + fh.read()
 
-VERSION = '0.1.4'
+VERSION = '0.3.1'
 DESCRIPTION = 'company name matching score'
 LONG_DESCRIPTION = 'Returns a score of 2 companies to be the same'
 
 # Setting up
 setup(
     name="company_name_matching",
-    version="0.1.4",
+    version="0.3.1",
     author="camillebrl (Camille Barboule)",
     author_email="camille.barboule@gmail.com",
     description="Returns a score of 2 companies to be the same",
     long_description_content_type="text/markdown",
-    packages=find_packages(),
+    packages= find_packages(), 
+    package_dir={'company_name_matching': 'company_name_matching'},
+    package_data={'': ['data/*.csv', 'data/*.json', '*.csv', '*.json']},
     install_requires=['fuzzywuzzy', 'Levenshtein'],
     keywords=['python', 'companies', 'matching', 'duplicates', 'names', 'cleaning'],
     classifiers=[
